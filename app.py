@@ -37,7 +37,6 @@ def pagina_inicial():
             for erro in erros:
                 flash(erro, 'danger')
 
-            # return redirect(url_for('pagina_inicial', erros = erros))
             return render_template('index.html', erros = erros)
 
 
@@ -45,16 +44,15 @@ def pagina_inicial():
         imc = (peso / (altura * altura))
 
         if imc < 18.5:
-            faixa = 'Abaixo do peso'
+            faixa = '🔵 Abaixo do peso'
         elif imc >= 18.5 and imc < 25:
-            faixa = 'Peso normal'
+            faixa = '🟢 Peso normal'
         elif imc >= 25 and imc < 30:
-            faixa = 'Sobrepeso'
+            faixa = '🟡 Sobrepeso'
         else:
-            faixa = 'Obesidade'
+            faixa = '🔴 Obesidade'
 
-            return render_template('index.html', imc = imc, nome = nome, peso = peso, altura = altura, faixa = faixa)
-            # return redirect(url_for('pagina_inicial', imc = imc, nome = nome, peso = peso, altura = altura, faixa = faixa))
+            return render_template('index.html', imc = float(imc), nome = nome, peso = float(peso), altura = float(altura), faixa = faixa)
 
     if request.method == 'GET':
         return render_template('index.html')

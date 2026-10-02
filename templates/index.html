@@ -29,17 +29,15 @@
                 <form method="post" action="/">
                     <div class="mb-3">
                         <label for="nome" class="form-label">Nome</label>
-                        <input type="text" class="form-control" id="nome" name="nome" required>
+                        <input type="text" class="form-control" id="nome" name="nome">
                     </div>
                     <div class="mb-3">
                         <label for="peso" class="form-label">Peso (kg)</label>
-                        <input type="number" class="form-control" id="peso" name="peso" step="0.01" min="1" max="300"
-                            required>
+                        <input type="number" class="form-control" id="peso" name="peso" step="0.01">
                     </div>
                     <div class="mb-3">
                         <label for="altura" class="form-label">Altura (m)</label>
-                        <input type="number" class="form-control" id="altura" name="altura" step="0.01" min="0.5"
-                            max="2.5" required>
+                        <input type="number" class="form-control" id="altura" name="altura" step="0.01">
                     </div>
                     <button type="submit" class="btn btn-primary" href="/">Calcular IMC</button>
                 </form>
@@ -59,7 +57,7 @@
             <div class="card-body">
                 <div class="alert alert-success mb-0" role="alert">
                     <h4 class="alert-heading">{{ nome }}</h4>
-                    <p class="mb-1">Seu IMC é <strong>{{ imc }}</strong></p>
+                    <p class="mb-1">Seu IMC é <strong>{{ "%.2f" | format(imc) }}</strong></p>
                     <p class="mb-0">Faixa: <strong>{{ faixa }}</strong></p>
                 </div>
             </div>
