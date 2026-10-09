@@ -2,7 +2,6 @@ from flask import Flask, render_template, request, redirect, url_for, flash
 
 app = Flask(__name__)
 
-
 @app.route('/', methods=['GET', 'POST'])
 def pagina_inicial():
 
@@ -29,7 +28,7 @@ def pagina_inicial():
 
         if not altura:
             erros.append('A altura é obrigatória.')
-        if altura < 0.5 and altura > 2.5:
+        if altura < 0.5 or altura > 2.5:
             erros.append('A altura deve estar entre 0.5 e 2.5.')
 
 
@@ -41,23 +40,28 @@ def pagina_inicial():
 
 
         faixa = ''
+        cor = ''
         imc = (peso / (altura * altura))
 
         if imc < 18.5:
             faixa = '🔵 Abaixo do peso'
+            cor = 'alert-info'
         elif imc >= 18.5 and imc < 25:
             faixa = '🟢 Peso normal'
+            cor = 'alert-success'
         elif imc >= 25 and imc < 30:
             faixa = '🟡 Sobrepeso'
+            cor = 'alert-warning'
         else:
             faixa = '🔴 Obesidade'
+            cor = 'alert-danger'
 
-            return render_template('index.html', imc = float(imc), nome = nome, peso = float(peso), altura = float(altura), faixa = faixa)
+            return render_template('index.html', imc = imc, nome = nome, peso = float(peso), altura = float(altura), faixa = faixa, cor= cor)
 
     if request.method == 'GET':
         return render_template('index.html')
 
-@app.route('/equipe', methods=['GET','POST'])
+@app.route('/equipe', methods=['GET','POST'])   
 def equipe():
     return render_template('equipe.html')
 

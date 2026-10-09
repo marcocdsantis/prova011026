@@ -55,10 +55,12 @@
         <div class="card mt-4">
             <div class="card-header">Resultado</div>
             <div class="card-body">
-                <div class="alert alert-success mb-0" role="alert">
+                <div class="alert {{cor}} mb-0" role="alert">
+                    <!-- {% if imc %} -->
                     <h4 class="alert-heading">{{ nome }}</h4>
                     <p class="mb-1">Seu IMC é <strong>{{ "%.2f" | format(imc) }}</strong></p>
                     <p class="mb-0">Faixa: <strong>{{ faixa }}</strong></p>
+                    <!-- {% endif %} -->
                 </div>
             </div>
         </div>
